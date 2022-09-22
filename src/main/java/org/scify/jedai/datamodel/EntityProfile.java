@@ -16,10 +16,9 @@
 
 package org.scify.jedai.datamodel;
 
-import static java.util.Objects.requireNonNull;
-
 import java.io.Serializable;
 import java.util.HashSet;
+import static java.util.Objects.requireNonNull;
 import java.util.Set;
 
 /**
@@ -58,6 +57,15 @@ public class EntityProfile implements Serializable {
         return attributes;
     }
     
+    public String getAttributeValue(String name) {
+        for(Attribute attr : getAttributes()) {
+            if(attr.getName().equals(name)) {
+                return attr.getValue();
+            }
+        }
+        return null;
+    }
+    
     @Override
     public boolean equals (Object another) {
         if (this == another) {
@@ -78,15 +86,17 @@ public class EntityProfile implements Serializable {
         h += (h << 5) + attributes.hashCode();
         return h;
     }
-    
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        attributes.forEach(attribute -> 
-            sb.append(attribute.getName()).append(":").append(attribute.getValue()).append(","));
-        if (sb.length() > 0) {
-          sb.setLength(sb.length()-1);
-        }
+        sb.append("EntityProfile{");
+        sb.append("url=").append(entityUrl);
+        sb.append(", attributes=").append(attributes);
+        sb.append('}');
         return sb.toString();
     }
+
+    
+    
 }

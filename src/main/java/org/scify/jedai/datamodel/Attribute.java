@@ -66,9 +66,16 @@ public class Attribute implements Serializable {
         hash = 59 * hash + (this.value != null ? this.value.hashCode() : 0);
         return hash;
     }
-    
+
     @Override
     public String toString() {
-        return "attribute\t:\t" + name + ", value\t:\t" + value;
+        StringBuilder sb = new StringBuilder();
+        sb.append("Attribute{");
+        sb.append("name=").append(name);
+        sb.append(", value=").append(value);
+        sb.append('}');
+        return sb.toString();
     }
+    
+    
 }

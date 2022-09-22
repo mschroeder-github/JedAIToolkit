@@ -47,9 +47,11 @@ public class RepModelSimMetricCombo {
         final List<RepModelSimMetricCombo> validCombos = new ArrayList<>();
         for (RepresentationModel rModel : RepresentationModel.values()) {
             final List<SimilarityMetric> metrics = SimilarityMetric.getModelCompatibleSimMetrics(rModel);
-            metrics.forEach((sMetric) -> {
-                validCombos.add(new RepModelSimMetricCombo(rModel, sMetric));
-            });
+            if(metrics != null) {
+                metrics.forEach((sMetric) -> {
+                    validCombos.add(new RepModelSimMetricCombo(rModel, sMetric));
+                });
+            }
         }
         return validCombos;
     }
